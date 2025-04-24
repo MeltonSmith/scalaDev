@@ -1,5 +1,5 @@
 package r.ian
-package algo.yandex.mergeksortedlists
+package algo.yandex.hard.mergeksortedlists
 
 import java.util.StringJoiner
 

@@ -1,5 +1,5 @@
 package r.ian
-package algo.yandex.mergeksortedlists
+package algo.yandex.hard.mergeksortedlists
 
 import java.util.concurrent.{ForkJoinPool, ForkJoinTask, RecursiveTask}
 import scala.collection.parallel.ForkJoinTaskSupport

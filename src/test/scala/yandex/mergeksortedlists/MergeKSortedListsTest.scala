@@ -2,8 +2,7 @@ package r.ian
 package yandex.mergeksortedlists
 
 import org.scalatest.flatspec.AnyFlatSpec
-import r.ian.algo.yandex.mergeksortedlists.Solution.createListNodeFrom
-import r.ian.algo.yandex.mergeksortedlists.{ListNode, Solution}
+import r.ian.algo.yandex.hard.mergeksortedlists.{ListNode, Solution}
 
 class MergeKSortedListsTest extends AnyFlatSpec{
 
