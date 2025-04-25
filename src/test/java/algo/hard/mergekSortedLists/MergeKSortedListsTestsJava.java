@@ -9,9 +9,10 @@ import org.junit.Test;
 public class MergeKSortedListsTestsJava {
 
     @Test
-    public void firstTest(){
-       ListNode[] listNodes = {createListNodeFrom(1,4,5), createListNodeFrom(1,3,4),  createListNodeFrom(2,6)};
-        var result = SolutionJava.mergeKLists(listNodes);
+    public void firstTest() {
+        ListNode[] listNodes = {createListNodeFrom(1, 4, 5), createListNodeFrom(1, 3, 4), createListNodeFrom(2, 6)};
+        SolutionJava solutionJava = new SolutionJava();
+        var result = solutionJava.mergeKLists(listNodes);
         System.out.println(result);
     }
 
