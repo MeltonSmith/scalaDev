@@ -27,8 +27,6 @@ public class SolutionJava {
 
         //conquer
         return serialSort(a1, a2);
-
-
     }
 
     private  ListNode serialSort(ListNode a1, ListNode a2) {
