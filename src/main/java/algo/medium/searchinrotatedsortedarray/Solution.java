@@ -7,32 +7,23 @@ package r.ian.algo.medium.searchinrotatedsortedarray;
 public class Solution {
     public int search(int[] nums, int target) {
         int left = 0, right = nums.length - 1;
-        int leftValue = nums[left], rightValue = nums[right];
         while (left <= right) {
             int mid = left + (right - left) / 2;
-            int currentValue = nums[mid];
-            if (currentValue == target) {
+            if (nums[mid] == target) {
                 return mid;
             }
-            if (currentValue < target) {
-                if (target >= leftValue && target > nums[right]) {
-                    if (mid != nums.length - 1 && nums[mid+1] > target)
-                        return -1;
-//                    rotated need to look in a left part
+            if (nums[left] <= nums[mid]) {
+                if (nums[left] <= target && target < nums[mid]) {
                     right = mid - 1;
-                    continue;
-                }
-                left = mid + 1;
-            }
-            if (currentValue > target) {
-                if (target <= rightValue && target > nums[left]) {
-                    if (mid != 0 && nums[mid-1] < target)
-                        return -1;
-                    //rotated need to look in a right part
+                } else {
                     left = mid + 1;
-                    continue;
                 }
-                right = mid - 1;
+            } else { //rotated area
+                if (nums[mid] < target && target <= nums[right]) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
             }
         }
         return -1;
