@@ -13,9 +13,9 @@ public class SolutionTest {
     @Test
     public void firstTest() {
         Solution solution = new Solution();
-//        List<Integer> ababcbacadefegdehijhklij = solution.partitionLabels("ababcbacadefegdehijhklij");
+        List<Integer> ababcbacadefegdehijhklij = solution.partitionLabels("ababcbacadefegdehijhklij");
 //        List<Integer> ababcbacadefegdehijhklij = solution.partitionLabels("eccbbbbdec");
-        List<Integer> ababcbacadefegdehijhklij = solution.partitionLabels("caedbdedda");
+//        List<Integer> ababcbacadefegdehijhklij = solution.partitionLabels("caedbdedda");
         System.out.println(ababcbacadefegdehijhklij);
     }
 }

@@ -1,6 +1,5 @@
 package r.ian.algo.medium.partitionlabels763;
 
-import scala.Char;
 
 import java.util.*;
 
@@ -24,7 +23,7 @@ public class Solution {
                 partitions[lastActivePartitionIndex] = newPartitionStartIndex;
             }
             else { //seen
-                while (charsAscii[c] < newPartitionStartIndex) { //seen in previous partition, "merge" partitions
+                while (charsAscii[c] < newPartitionStartIndex) { //seen in previous partition, moving back and "merge" partitions
                     partitions[lastActivePartitionIndex] = 0;
                     lastActivePartitionIndex--;
                     newPartitionStartIndex = partitions[lastActivePartitionIndex];
