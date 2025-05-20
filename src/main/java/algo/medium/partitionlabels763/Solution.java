@@ -9,43 +9,41 @@ import java.util.*;
  */
 public class Solution {
     public List<Integer> partitionLabels(String s) {
-        int[] charsAscii = new int[127];
-        //todo
+        int[] charsAscii = new int[26];
         Arrays.fill(charsAscii, -1);
+        int a = 'a';
         int[] partitions = new int[s.length() + 1];
         int lastActivePartitionIndex = -1;
         int newPartitionStartIndex = 0;
         for (int i = 0; i < s.length(); i++) {
             int c = s.charAt(i);
             //not seen, starting a new partition
-            if (charsAscii[c] == -1) {
+            if (charsAscii[c-a] == -1) {
                 newPartitionStartIndex = i;
                 lastActivePartitionIndex++;
                 partitions[lastActivePartitionIndex] = newPartitionStartIndex;
-            }
-            else { //seen
-                while (charsAscii[c] < newPartitionStartIndex) { //seen in previous partition, moving back and "merge" partitions
+            } else { //seen
+                while (charsAscii[c-a] < newPartitionStartIndex) { //seen in previous partition, moving back and "merge" partitions
                     partitions[lastActivePartitionIndex] = 0;
                     lastActivePartitionIndex--;
                     newPartitionStartIndex = partitions[lastActivePartitionIndex];
                 }
             }
-            charsAscii[c] = i;
+            charsAscii[c-a] = i;
         }
 
         LinkedList<Integer> res = new LinkedList<>();
-        for (int i = 0; i < partitions.length; i++) {
-            if (partitions[i] != 0 && (i == partitions.length - 1 || partitions[i+1] == 0)) {
-                res.add(s.length() - partitions[i]);
-                break;
-            }
-            else if (partitions[i] == 0 && partitions[i+1] == 0) {
-                res.add(s.length() - partitions[i]);
-                break;
-            }
-            else
-                res.add(partitions[i+1] - partitions[i]);
+        if (lastActivePartitionIndex == -1) {
+            res.add(s.length());
+            return res;
+        }
 
+        for (int i = 0; i < partitions.length; i++) {
+            if (i == lastActivePartitionIndex) {
+                res.add(s.length() - partitions[i]);
+                break;
+            } else
+                res.add(partitions[i + 1] - partitions[i]);
         }
 
         return res;
