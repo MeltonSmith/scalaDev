@@ -33,7 +33,7 @@ public class Solution {
             charsAscii[c-a] = i;
         }
 
-        LinkedList<Integer> res = new LinkedList<>();
+        List<Integer> res = new LinkedList<>();
         if (lastActivePartitionIndex == -1) {
             res.add(s.length());
             return res;
