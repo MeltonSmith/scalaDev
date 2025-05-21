@@ -6,35 +6,24 @@ package r.ian.algo.easy.balancedbinarytree110;
  */
 public class Solution {
     public boolean isBalanced(TreeNode root) {
-
-        return dfsLeft(root) <=1;
+        if (root == null) {
+            return true;
+        }
+        int i = dfsLeft(root.left);
+        int j = dfsLeft(root.right);
+        int abs = Math.abs(i - j);
+        System.out.println("abs = " + abs);
+        return i >= 0 && j >= 0 && (abs <=1);
     }
 
     public int dfsLeft(TreeNode node) {
         if (node == null)
             return 0;
-//        if (node.left == null) {
-//            return -1-dfsLeft(node.right);
-//        }
-        return dfsLeft(node.left)-dfsLeft(node.right);
+        int i = 1+dfsLeft(node.left);
+        int j = 1+dfsLeft(node.right);
+        System.out.println("node with val " + node.val + " i is " + i + " j is " + j);
+        if (Math.abs(i - j) > 1)
+            return -5001;
+        return Math.max(i, j);
     }
-
-
-
-//    public int dfsDiff(TreeNode node) {
-//        if (node == null) {
-//            return 0;
-//        }
-//
-//        return Math.abs(dfsLeft(node) - dfsRight(node));
-//    }
-
-
-
-//    public int dfsRight(TreeNode node) {
-//        if (node.right == null) {
-//            return 0;
-//        }
-//        return 1 + dfsRight(node.right);
-//    }
 }
