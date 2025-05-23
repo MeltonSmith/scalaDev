@@ -20,10 +20,11 @@ public class Solution {
         if (node == null) {
             return null;
         }
-        if (targetSumLeft < node.val) {
+//        if (targetSumLeft < node.val) {
             //go up and check another path
-            return null;
-        }
+//            System.out.println("No solution targetSumLeft: " + targetSumLeft + " nove val is " + node.val);
+//            return null;
+//        }
         if (targetSumLeft == node.val && node.left == null && node.right == null) { //leaf
             LinkedList<Integer> a = new LinkedList<>();
             a.addFirst(node.val);
@@ -31,6 +32,7 @@ public class Solution {
             //return index
             List<Integer> idx = new ArrayList<>();
             idx.add(res.size()-1);
+//            System.out.println("Solution found: leaf node val is " + node.val + " returning " + idx);
             return idx;
         }
 
@@ -51,10 +53,10 @@ public class Solution {
         else
             resultPositions = rPositions;
 
-        for (int i = resultPositions.size()-1; i >= 0; i--) {
-            res.get(i).add(0, node.val);
+        System.out.println("Solution found: for node " + node.val + ", left is " + node.left + " right is " + node.right + " " + resultPositions);
+        for (int i = 0; i <= resultPositions.size() - 1; i++) {
+            res.get(resultPositions.get(i)).add(0, node.val);
         }
-
         return resultPositions;
     }
 }

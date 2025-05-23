@@ -6,8 +6,8 @@ package r.ian.algo.easy.balancedbinarytree110;
  */
 public class TreeNode {
     int val;
-    TreeNode left;
-    TreeNode right;
+    public TreeNode left;
+    public TreeNode right;
 
     TreeNode() {
     }

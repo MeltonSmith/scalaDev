@@ -8,14 +8,14 @@ package algo.easy.balancedbinarytree110
 object SolutionScala {
 
   //100% 56% 60 Mb mem
-  def isBalanced(root: TreeNode): Boolean = {
+  def isBalanced(root: TreeNodeScala): Boolean = {
     if (root == null)
       return true
 
     dfs(root) != -1
   }
 
-  def dfs(node : TreeNode): Int = {
+  def dfs(node : TreeNodeScala): Int = {
     if (node == null)
       return -1
     val left = dfs(node.left)
@@ -34,9 +34,9 @@ object SolutionScala {
 }
 
 
-class TreeNode(_value: Int = 0, _left: TreeNode = null, _right: TreeNode = null) {
+class TreeNodeScala(_value: Int = 0, _left: TreeNodeScala = null, _right: TreeNodeScala = null) {
   var value: Int = _value
-  var left: TreeNode = _left
-  var right: TreeNode = _right
+  var left: TreeNodeScala = _left
+  var right: TreeNodeScala = _right
 }
 
