@@ -59,4 +59,26 @@ public class Solution {
         }
         return resultPositions;
     }
+
+    public List<List<Integer>> pathSum2(TreeNode root, int targetSum) {
+        List<List<Integer>> res = new ArrayList<>();
+        dfs(root, targetSum, new ArrayList<>(), res);
+        return res;
+    }
+
+    public void dfs(TreeNode node, int targetSumLeft, List<Integer> path, List<List<Integer>> res) {
+        if (node == null)
+            return;
+
+        path.add(node.val);
+
+        if (node.left == null && node.right == null && targetSumLeft == node.val)
+            res.add(new ArrayList<>(path));
+
+        dfs(node.left, targetSumLeft - node.val, path, res);
+        dfs(node.right, targetSumLeft - node.val, path, res);
+
+        path.remove(path.size()-1);
+
+    }
 }

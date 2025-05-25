@@ -29,16 +29,13 @@ public class SolutionTest {
                                             .setRight(new TreeNode(1))
                                 ));
 
-        ArrayList<List<Integer>> res = new ArrayList<>();
-        solution.dfsPathLookup(node, 22, res);
-        System.out.println(res);
+        System.out.println(solution.pathSum2(node, 22));
     }
 
     @Test
     public void secondCaseTest() {
         var node = new TreeNode(-2).setRight(new TreeNode(-3));
-        ArrayList<List<Integer>> res = new ArrayList<>();
-        solution.dfsPathLookup(node, -5, res);
-        System.out.println(res);
+        List<List<Integer>> lists = solution.pathSum2(node, -5);
+        System.out.println(lists);
     }
 }
