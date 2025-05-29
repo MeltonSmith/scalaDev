@@ -7,6 +7,7 @@ import java.util.Arrays;
 /**
  * Array Only
  * 9% 84%
+ *
  * @author Melton Smith
  * @since 28.05.2025
  */
@@ -89,6 +90,7 @@ public class Solution {
             }
         }
 
+        //for k controlling
         if (i == left.length && j == right.length) {
             k++;
             return Arrays.copyOfRange(resArr, 0, k);
@@ -100,6 +102,7 @@ public class Solution {
             if (leftArr[0] <= resArr[k][1]) {
                 resArr[k][1] = Math.max(leftArr[1], resArr[k][1]);
                 if (i == left.length - 1) {
+                    //for k controlling
                     k++;
                 }
                 i++;
@@ -118,6 +121,7 @@ public class Solution {
             if (rightArr[0] <= resArr[k][1]) { //merge
                 resArr[k][1] = Math.max(rightArr[1], resArr[k][1]);
                 if (j == right.length - 1) {
+                    //for k controlling
                     k++;
                 }
                 j++;

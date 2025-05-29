@@ -42,4 +42,13 @@ public class SolutionTest {
         int[][] merge = solution.merge(case1);
         System.out.println(merge);
     }
+
+    @Test
+    public void fiveTest() {
+//        int[][] case1  = new int[][] {{2,3},{4,5},{6,7},{8,9},{1,10}};
+        int[][] case1  = new int[][] {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
+        Solution2 solution = new Solution2();
+        int[][] merge = solution.merge(case1);
+        System.out.println(merge);
+    }
 }
