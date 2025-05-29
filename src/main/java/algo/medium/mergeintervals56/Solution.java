@@ -5,13 +5,15 @@ import scala.Array;
 import java.util.Arrays;
 
 /**
+ * Array Only
+ * 9% 84%
  * @author Melton Smith
  * @since 28.05.2025
  */
 public class Solution {
 
     public int[][] merge(int[][] intervals) {
-        return sort(intervals, 0, intervals.length-1);
+        return sort(intervals, 0, intervals.length - 1);
     }
 
     public int[][] sort(int[][] input, int left, int right) {
@@ -19,7 +21,7 @@ public class Solution {
             int[] ints = input[left];
             int[][] res = new int[1][2];
             res[0] = ints;
-            return input;
+            return res;
 
         }
 
@@ -30,7 +32,6 @@ public class Solution {
 
         return merge(sort, sort1);
     }
-
 
 
     private int[][] merge(int[][] left, int[][] right) {
@@ -51,7 +52,7 @@ public class Solution {
                         if (leftAr[0] <= resArr[k][1]) { //now checking left
                             resArr[k][1] = Math.max(leftAr[1], resArr[k][1]);
                             i++;
-                            j++;
+                            j++; //todo need k++
                         } else {
                             j++;
                         }
@@ -80,39 +81,57 @@ public class Solution {
                         resArr[k] = leftAr;
                         i++;
                     }
-                }
-                else {
+                } else {
                     resArr[k] = leftAr;
                     i++;
                 }
 
             }
         }
+
+        if (i == left.length && j == right.length) {
+            k++;
+            return Arrays.copyOfRange(resArr, 0, k);
+        }
+
         //adding something is left
         while (i < left.length) {
             int[] leftArr = left[i];
             if (leftArr[0] <= resArr[k][1]) {
                 resArr[k][1] = Math.max(leftArr[1], resArr[k][1]);
+                if (i == left.length - 1) {
+                    k++;
+                }
                 i++;
             } else {
-                resArr[k] = leftArr;
-                i++;
                 k++;
+                resArr[k] = leftArr;
+                if (i == left.length - 1) {
+                    k++;
+                }
+                i++;
             }
         }
 
         while (j < right.length) {
             int[] rightArr = right[j];
-            if (rightArr[0] <= resArr[k][1]) {
+            if (rightArr[0] <= resArr[k][1]) { //merge
                 resArr[k][1] = Math.max(rightArr[1], resArr[k][1]);
+                if (j == right.length - 1) {
+                    k++;
+                }
                 j++;
             } else {
-                resArr[k] = rightArr;
-                j++;
                 k++;
+                resArr[k] = rightArr;
+                if (j == right.length - 1) {
+                    k++;
+                }
+                j++;
             }
         }
 
-        return Arrays.copyOfRange(resArr, 0, k+1);
+
+        return Arrays.copyOfRange(resArr, 0, k);
     }
 }
