@@ -52,7 +52,7 @@ public class Solution {
                         if (leftAr[0] <= resArr[k][1]) { //now checking left
                             resArr[k][1] = Math.max(leftAr[1], resArr[k][1]);
                             i++;
-                            j++; //todo need k++
+                            j++;
                         } else {
                             j++;
                         }
