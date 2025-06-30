@@ -33,6 +33,28 @@ class Solution {
         return true;
     }
 
+    public boolean isPalindrome2(String s) {
+        char[] arr = s.toCharArray();
+        int i = 0;
+        int j = arr.length-1;
+        while (i <= j) {
+            if (!Character.isLetterOrDigit(arr[i])){
+                i++;
+            }
+            else if (!Character.isLetterOrDigit(arr[j])){
+                j --;
+            }
+            else {
+                if (Character.toLowerCase(arr[j]) != Character.toLowerCase(arr[i])){
+                    return false;
+                }
+                i++;
+                j--;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         new Solution().isPalindrome("ab2a");
     }
