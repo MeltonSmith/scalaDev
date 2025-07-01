@@ -25,12 +25,13 @@ public class Solution {
 
         for (int i = 0; i < charascii2.length; i++) {
             if (charascii2[i] >= k) {
-                oneCharCandidates.add((char) (i+ 'a'));
+                oneCharCandidates.add((char) (i + 'a'));
             }
         }
 
         String result = "";
-        Queue<String> queue = new ArrayDeque<>(oneCharCandidates.stream().map(a -> String.valueOf(a)).toList());
+        Queue<String> queue = new ArrayDeque<>();
+        queue.add(result);
 
         while (!queue.isEmpty()) {
             String curr = queue.poll();
@@ -56,7 +57,7 @@ public class Solution {
                 if (i == subStr.length()) {
                     i = 0;
                     count++;
-                    if(count == k) {
+                    if (count == k) {
                         return true;
                     }
                 }
@@ -66,7 +67,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        String res = new Solution().longestSubsequenceRepeatedK("letsleetcode", 2);
+        String res = new Solution().longestSubsequenceRepeatedK("bb", 2);
         System.out.println(res);
     }
 }
