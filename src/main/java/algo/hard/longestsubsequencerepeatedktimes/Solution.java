@@ -11,8 +11,9 @@ import java.util.Queue;
  */
 public class Solution {
 
-
     public String longestSubsequenceRepeatedK(String s, int k) {
+
+        int maxSegmentLength = s.length() / k;
 
         char[] charArray = s.toCharArray();
         int[] charascii2 = new int[26];
@@ -21,11 +22,11 @@ public class Solution {
             charascii2[charArray[i] - 'a']++;
         }
 
-        List<Character> oneCharCandidates = new ArrayList<>();
+        List<Character> charCandidates = new ArrayList<>();
 
         for (int i = 0; i < charascii2.length; i++) {
             if (charascii2[i] >= k) {
-                oneCharCandidates.add((char) (i + 'a'));
+                charCandidates.add((char) (i + 'a'));
             }
         }
 
@@ -35,8 +36,12 @@ public class Solution {
 
         while (!queue.isEmpty()) {
             String curr = queue.poll();
-            for (int i = 0; i < oneCharCandidates.size(); i++) {
-                var next = curr + oneCharCandidates.get(i);
+            for (int i = 0; i < charCandidates.size(); i++) {
+                //segment is too long
+                if (maxSegmentLength < curr.length() + 1)
+                    break;
+
+                var next = curr + charCandidates.get(i);
                 if (isAPartOf(next, s, k)) {
                     result = next;
                     queue.add(next);
@@ -48,6 +53,9 @@ public class Solution {
 
     }
 
+    /**
+     * if a substr is a part of s
+     */
     public boolean isAPartOf(String subStr, String s, int k) {
         int i = 0;
         int count = 0;
