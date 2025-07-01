@@ -1,0 +1,72 @@
+package r.ian.algo.hard.longestsubsequencerepeatedktimes;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+
+/**
+ * @author Melton Smith
+ * @since 01.07.2025
+ */
+public class Solution {
+
+
+    public String longestSubsequenceRepeatedK(String s, int k) {
+
+        char[] charArray = s.toCharArray();
+        int[] charascii2 = new int[26];
+
+        for (int i = 0; i < charArray.length; i++) {
+            charascii2[charArray[i] - 'a']++;
+        }
+
+        List<Character> oneCharCandidates = new ArrayList<>();
+
+        for (int i = 0; i < charascii2.length; i++) {
+            if (charascii2[i] >= k) {
+                oneCharCandidates.add((char) (i+ 'a'));
+            }
+        }
+
+        String result = "";
+        Queue<String> queue = new ArrayDeque<>(oneCharCandidates.stream().map(a -> String.valueOf(a)).toList());
+
+        while (!queue.isEmpty()) {
+            String curr = queue.poll();
+            for (int i = 0; i < oneCharCandidates.size(); i++) {
+                var next = curr + oneCharCandidates.get(i);
+                if (isAPartOf(next, s, k)) {
+                    result = next;
+                    queue.add(next);
+                }
+            }
+        }
+
+        return result;
+
+    }
+
+    public boolean isAPartOf(String subStr, String s, int k) {
+        int i = 0;
+        int count = 0;
+        for (char c : s.toCharArray()) {
+            if (c == subStr.charAt(i)) {
+                i++;
+                if (i == subStr.length()) {
+                    i = 0;
+                    count++;
+                    if(count == k) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        String res = new Solution().longestSubsequenceRepeatedK("letsleetcode", 2);
+        System.out.println(res);
+    }
+}
