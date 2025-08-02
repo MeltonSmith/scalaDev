@@ -1,9 +1,6 @@
 package r.ian.algo.medium._43;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * @author Melton Smith
@@ -61,37 +58,34 @@ public class Solution {
                             byte i = (byte) (res % 10);
                             product.addFirst(i);
                             dec = res / 10;
-                        }
-                        else {
+                        } else {
                             product.addFirst(res);
                         }
 
                     }
 
-                    while (a.peekLast() != null){
+                    while (a.peekLast() != null) {
                         byte first = a.pollLast();
-                        byte res = (byte) (first  + dec);
+                        byte res = (byte) (first + dec);
                         dec = 0;
                         if (res >= 10) {
                             byte i = (byte) (res % 10);
                             product.addFirst(i);
                             dec = res / 10;
-                        }
-                        else {
+                        } else {
                             product.addFirst(res);
                         }
 
                     }
-                    while (b.peekLast() != null){
+                    while (b.peekLast() != null) {
                         byte second = b.pollLast();
-                        byte res = (byte) (second  + dec);
+                        byte res = (byte) (second + dec);
                         dec = 0;
                         if (res > 10) {
                             byte i = (byte) (res % 10);
                             product.addFirst(i);
                             dec = res / 10;
-                        }
-                        else {
+                        } else {
                             product.addFirst(res);
                         }
                     }
@@ -106,18 +100,46 @@ public class Solution {
 
 
         return reduce.map(a -> {
-            StringBuilder stringBuilder = new StringBuilder();
-            while (a.peekFirst() != null) {
-                byte first = a.pollFirst();
-                stringBuilder.append(first);
-            }
-            return stringBuilder.toString();
+                    StringBuilder stringBuilder = new StringBuilder();
+                    while (a.peekFirst() != null) {
+                        byte first = a.pollFirst();
+                        stringBuilder.append(first);
+                    }
+                    return stringBuilder.toString();
                 }
         ).orElse("");
 
     }
 
+
+    public String multiply2(String num1, String num2) {
+        int m = num1.length();
+        int n = num2.length();
+        int[] res = new int[m + n];
+
+        for (int i = m - 1; i >= 0; i--) {
+            for (int j = n - 1; j >= 0; j--) {
+                int mlt = Character.getNumericValue(num1.charAt(i)) * Character.getNumericValue(num2.charAt(j));
+                int pos1 = i + j;
+                int pos2 = pos1 + 1;
+                int sum = mlt + res[pos2];
+
+                res[pos2] = (sum) % 10;
+                res[pos1] += sum / 10;
+
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for(int p : res)
+            if(!(sb.isEmpty() && p == 0))
+                sb.append(p);
+        return sb.isEmpty() ? "0" : sb.toString();
+
+    }
+
     public static void main(String[] args) {
-        System.out.println(new Solution().multiply("123", "456")); //56088
+//        System.out.println(Arrays.toString(new Solution().multiply2("173", "284"))); //56088
+        System.out.println((new Solution().multiply2("284", "173"))); //49132
     }
 }
