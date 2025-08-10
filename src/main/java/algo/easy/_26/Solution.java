@@ -20,4 +20,14 @@ public class Solution {
         }
         return indexToSet;
     }
+
+    public int removeDuplicates2(int[] nums) {
+        int indexToSet = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != nums[indexToSet-1]) {
+                nums[indexToSet++] = nums[i];
+            }
+        }
+        return indexToSet;
+    }
 }
