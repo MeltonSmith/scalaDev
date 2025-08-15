@@ -16,5 +16,18 @@ public class Solution {
 
         }
         return diff;
+
+//        also
+        // int havingBalance= -prices[0];
+        // int sellingBalance = 0;
+
+        // for (int i = 1; i < prices.length; i++) {
+        //     sellingBalance = Math.max(sellingBalance, havingBalance + prices[i]);
+        //     havingBalance = Math.max(havingBalance, -prices[i]);
+        // }
+
+        // return sellingBalance;
     }
+
+
 }
