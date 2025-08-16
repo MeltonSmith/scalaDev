@@ -75,7 +75,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        String res = new Solution().longestSubsequenceRepeatedK("bb", 2);
+        String res = new Solution().longestSubsequenceRepeatedK("letsleetcode", 2);
         System.out.println(res);
     }
 }
